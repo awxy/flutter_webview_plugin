@@ -84,9 +84,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -97,21 +97,21 @@ class _MyHomePageState extends State<MyHomePage> {
   final flutterWebViewPlugin = FlutterWebviewPlugin();
 
   // On destroy stream
-  StreamSubscription _onDestroy;
+  late StreamSubscription _onDestroy;
 
   // On urlChanged stream
-  StreamSubscription<String> _onUrlChanged;
+  late StreamSubscription<String> _onUrlChanged;
 
   // On urlChanged stream
-  StreamSubscription<WebViewStateChanged> _onStateChanged;
+  late StreamSubscription<WebViewStateChanged> _onStateChanged;
 
-  StreamSubscription<WebViewHttpError> _onHttpError;
+  late StreamSubscription<WebViewHttpError> _onHttpError;
 
-  StreamSubscription<double> _onProgressChanged;
+  late StreamSubscription<double> _onProgressChanged;
 
-  StreamSubscription<double> _onScrollYChanged;
+  late StreamSubscription<double> _onScrollYChanged;
 
-  StreamSubscription<double> _onScrollXChanged;
+  late StreamSubscription<double> _onScrollXChanged;
 
   final _urlCtrl = TextEditingController(text: selectedUrl);
 
@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _onDestroy = flutterWebViewPlugin.onDestroy.listen((_) {
       if (mounted) {
         // Actions like show a info toast.
-        _scaffoldKey.currentState.showSnackBar(
+        _scaffoldKey.currentState?.showSnackBar(
             const SnackBar(content: const Text('Webview Destroyed')));
       }
     });
